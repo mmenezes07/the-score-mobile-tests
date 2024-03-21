@@ -3,22 +3,20 @@ package tests;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 import pageobjects.BetAlertModal;
 import pageobjects.ChooseFavoritesPage;
 import pageobjects.NotificationsPage;
 import pageobjects.WelcomePage;
 
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 
 public class BaseTest {
 
     AppiumDriver driver;
 
-    @BeforeTest
+    @BeforeClass
     public void SetUp() throws MalformedURLException {
         // todo move this into driver handler class
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
@@ -48,7 +46,7 @@ public class BaseTest {
         betAlertModal.clickClose();
     }
 
-    @AfterTest
+    @AfterClass
     public void TearDown() {
         if (driver != null) {
             driver.quit();
