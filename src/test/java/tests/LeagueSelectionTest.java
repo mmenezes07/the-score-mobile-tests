@@ -13,7 +13,6 @@ public class LeagueSelectionTest extends BaseTest {
         Assert.assertTrue(favoritesPage.isAt()); 
         
         favoritesPage.clickLeaguesTab();
-
         LeagueSelectionPage leagueSelectionPage = new LeagueSelectionPage(driver);
         Assert.assertTrue(leagueSelectionPage.isAt());
         

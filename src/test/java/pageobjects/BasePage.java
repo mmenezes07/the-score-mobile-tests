@@ -2,6 +2,7 @@ package pageobjects;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -9,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class BasePage {
-    private final AppiumDriver driver;
+    protected final AppiumDriver driver;
 
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
@@ -19,6 +20,14 @@ public class BasePage {
         waitForElementToBeClickable(by);
         System.out.println(STR."Clicking on element\{by.toString()}");
         driver.findElement(by).click();
+    }
+    
+    public void type(By by, String text) {
+        waitForElementToBePresent(by);
+        System.out.println(STR."Entering text: \{text} in element\{by.toString()}");
+        WebElement elem = driver.findElement(by);
+        elem.clear();
+        elem.sendKeys(text);
     }
     
     public String getText(By by) {
