@@ -14,29 +14,47 @@ public class BasePage {
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
     }
-
+    
     public void click(By by) {
         waitForElementToBeClickable(by);
         System.out.println(STR."Clicking on element\{by.toString()}");
         driver.findElement(by).click();
     }
-
-    public void waitForElementToBeClickable(By by) {
-        System.out.println(STR."Wating for element\{by.toString()} to be clickable");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.elementToBeClickable(by));
-    }
-
-    public void waitForElementToBePresent(By by) {
-        System.out.println(STR."Wating for element\{by.toString()} to be present");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.presenceOfElementLocated(by));
-    }
     
+    public String getText(By by) {
+        waitForElementToBePresent(by);
+        String text = driver.findElement(by).getText();
+        System.out.println(STR."Element\{by.toString()} has text \{text}");
+        return text;
+    }
+
+    public String getText(By by, String expectedText) {
+        waitForText(by, expectedText);
+        return getText(by);
+    }
+
     public boolean isElementSelected(By by) {
         waitForElementToBePresent(by);
         boolean selected = driver.findElement(by).isSelected();
         System.out.println(STR."Element\{by.toString()} has property selected set to \{selected}");
         return selected;
+    }
+
+    public void waitForElementToBeClickable(By by) {
+        System.out.println(STR."Waiting for element\{by.toString()} to be clickable");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.elementToBeClickable(by));
+    }
+
+    public void waitForElementToBePresent(By by) {
+        System.out.println(STR."Waiting for element\{by.toString()} to be present");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
+    public void waitForText(By by, String text) {
+        System.out.println(STR."Waiting for element\{by.toString()} to have text \{text}");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(by, text));
     }
 }
