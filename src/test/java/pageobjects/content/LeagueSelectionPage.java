@@ -6,13 +6,14 @@ import org.openqa.selenium.By;
 public class LeagueSelectionPage extends ContentBasePage {
     private final By editButton = By.xpath("//android.widget.TextView[@text=\"Edit\"]");
     private final By doneButton = By.xpath("//android.widget.TextView[@text=\"Done\"]");
+    private final By title = By.xpath("//android.widget.LinearLayout[contains(@resource-id,\"title_container\")]//android.widget.TextView[@text=\"Leagues\"]");
     
     public LeagueSelectionPage(AppiumDriver driver) {
         super(driver);
     }
 
     public boolean isAt() {
-        return isElementSelected(leaguesTab);
+        return isElementSelected(leaguesTab) && isElementDisplayed(title);
     }
 
     /**
