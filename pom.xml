@@ -12,7 +12,41 @@
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <allure.version>2.24.0</allure.version>
+        <aspectj.version>1.9.20.1</aspectj.version>
     </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.13.0</version>
+                    <configuration>
+                        <release>22</release>
+                        <compilerArgs>
+                            <arg>--enable-preview</arg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.2.5</version>
+                    <configuration>
+                        <argLine>--enable-preview -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
+                        <suiteXmlFiles>
+                            <suiteXmlFile>
+                                testng.xml
+                            </suiteXmlFile>
+                        </suiteXmlFiles>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -29,6 +63,24 @@
             <artifactId>testng</artifactId>
             <version>7.9.0</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-bom</artifactId>
+            <version>${allure.version}</version>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <scope>test</scope>
+            <version>${allure.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
         </dependency>
     </dependencies>
 </project>

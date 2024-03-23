@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="MobileTests" verbose="1">
+    <test name="QAAutomationChallenge">
+        <classes>
+            <class name="tests.LeagueSelectionTest"/>
+            <class name="tests.TeamSelectionTest"/>
+        </classes>
+    </test>
+</suite>
