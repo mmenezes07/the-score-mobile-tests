@@ -1,32 +1,47 @@
 package tests;
 
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pageobjects.content.ContentBasePage;
 import pageobjects.content.LeaguePage;
 import pageobjects.content.LeagueSelectionPage;
 
 public class LeagueSelectionTest extends BaseTest {
-    @Test
-    public void selectLeagueTest() {
+    
+    @DataProvider(name = "leagues")
+    public static Object[][] leagues() {
+        return new Object[][] {
+                { "NHL", new String[] { 
+                        "BOS Bruins", "FLA Panthers" }
+                }, 
+                { "NBA", new String[] { 
+                        "BOS Celtics", "MIL Bucks" }
+                }
+        };
+    }
+    
+    @Test(dataProvider = "leagues")
+    public void selectLeagueTest(String leagueName, String[] teamNames) {
         ContentBasePage contentPage = new ContentBasePage(driver);        
         contentPage.clickLeaguesTab();
         
+        // Click on the League Selection tab
         LeagueSelectionPage leagueSelectionPage = new LeagueSelectionPage(driver);
         Assert.assertTrue(leagueSelectionPage.isAt());
 
         // workaround to dismiss the quick tip modal
         leagueSelectionPage.clickEdit();
         leagueSelectionPage.clickDone();
-
-        String leagueName = "NHL";
+        
+        // Open a league and assert that the correct league opens
         leagueSelectionPage.clickLeague(leagueName);
-
         LeaguePage leaguePage = new LeaguePage(driver);
         Assert.assertEquals(leaguePage.getTitle(), leagueName);
 
+        // Click on the Standing sub tab of the league
         leaguePage.clickStandingsTab();
-        Assert.assertTrue(leaguePage.isTeamPresent("BOS Bruins"));
+        Assert.assertTrue(leaguePage.areTeamsPresent(teamNames));
         /*
         NOTE: The assertion above is not very strong/good. The teams in the playoff picture could change, causing
         the test to fail. More teams could also be asserted but the same problem exists.
@@ -37,6 +52,7 @@ public class LeagueSelectionTest extends BaseTest {
         the teams that are supposed to be in the playoffs get displayed on this screen and in the right spot.
          */
 
+        // Go back and assert the app navigates to the League Selection page
         leaguePage.clickBack();
         Assert.assertTrue(leagueSelectionPage.isAt());
     }

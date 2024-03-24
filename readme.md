@@ -44,18 +44,21 @@ stack and setup/run guide.
 Ensure setup steps are complete - Appium server should be running and the right 
 version of the Android emulator is running. 
 
-Run the following command to run all tests `mvn test`
-Run the following command to run select tests `mvn test -Dtest=path.to.test`
+#### Running all tests 
+```mvn test```
+
+#### Running tests from test class 
+```mvn test -Dtest=TestClassName```
 
 ## Project Structure
 
-### app
+#### app
 
 The app folder contains the application under test. The tests use theScore 
 Android app (apk) downloaded from https://apkpure.com/. The app version is 
 24.4.0.
 
-### src/test/java/pageobjects
+#### src/test/java/pageobjects
 
 The `pageobjects` folder contains the page objects used when writing tests. The
 pages are further organized in different packages depending on the functional area
@@ -74,7 +77,7 @@ update the locator in a page object. The change would only need to be made in
 a single place without the need to update any tests. Additionally, tests are 
 easier to read and are much better organized.
 
-### src/test/java/tests
+#### src/test/java/tests
 
 The tests for mobile application are stored here. The tests use the TestNG testing framework.
 All tests inherit from `BaseTest` which contains a setup method that runs before 

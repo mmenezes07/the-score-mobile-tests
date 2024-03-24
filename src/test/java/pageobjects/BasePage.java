@@ -11,6 +11,7 @@ import java.time.Duration;
 
 public class BasePage {
     protected final AppiumDriver driver;
+    private static final Duration DEFAULT_WAIT_TIMEOUT = Duration.ofSeconds(20);
 
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
@@ -58,25 +59,25 @@ public class BasePage {
 
     public void waitForElementToBeClickable(By by) {
         System.out.println(STR."Waiting for element\{by.toString()} to be clickable");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, DEFAULT_WAIT_TIMEOUT);
         wait.until(ExpectedConditions.elementToBeClickable(by));
     }
 
     public void waitForElementToBePresent(By by) {
         System.out.println(STR."Waiting for element\{by.toString()} to be present");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, DEFAULT_WAIT_TIMEOUT);
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
     public void waitForElementToBeVisible(By by) {
         System.out.println(STR."Waiting for element\{by.toString()} to be visible");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, DEFAULT_WAIT_TIMEOUT);
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
     public void waitForText(By by, String text) {
         System.out.println(STR."Waiting for element\{by.toString()} to have text \{text}");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(driver, DEFAULT_WAIT_TIMEOUT);
         wait.until(ExpectedConditions.textToBePresentInElementLocated(by, text));
     }
 }

@@ -1,7 +1,10 @@
 package pageobjects.team;
 
+import common.Stat;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
+
+import java.util.Objects;
 
 public class TeamStatsPage extends TeamPage {
     public TeamStatsPage(AppiumDriver driver) {
@@ -15,7 +18,7 @@ public class TeamStatsPage extends TeamPage {
         return By.xpath(getStatByCategoryXPath(category));
     }
     
-    public boolean isStatDisplayed(String category) {
+    public boolean isStatCategoryDisplayed(String category) {
         return isElementDisplayed(getStatByCategory(category));
     }
     
@@ -29,5 +32,19 @@ public class TeamStatsPage extends TeamPage {
         String statRankXpath = "/android.widget.TextView[contains(@resource-id,\"text_formatted_rank\")]";
         By statRank = By.xpath(STR."\{getStatByCategoryXPath(category)}\{statRankXpath}");
         return getText(statRank);
+    }
+    
+    public boolean isStatDisplayed(Stat stat) {
+        return isStatCategoryDisplayed(stat.category) && 
+                Objects.equals(getStatValue(stat.category), stat.value) &&
+                Objects.equals(getStatRank(stat.category), stat.rank);
+    }
+    
+    public boolean areStatsDisplayed(Stat[] stats) {
+        for (Stat stat : stats) {
+            if (!isStatDisplayed(stat)) return false;
+        }
+        
+        return true;
     }
 }

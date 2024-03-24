@@ -25,6 +25,14 @@ public class LeaguePage extends BasePage {
         return isElementDisplayed(By.xpath(STR."//android.widget.TextView[@text=\"\{expectedTeam}\"]"));
     }
     
+    public boolean areTeamsPresent(String[] expectedTeams) {
+        for (String expectedTeam : expectedTeams) {
+            if (!isTeamPresent(expectedTeam)) return false;
+        }
+        
+        return true;
+    }
+    
     public void clickBack() {
         click(backButton);
     }

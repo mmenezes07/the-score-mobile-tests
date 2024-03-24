@@ -1,5 +1,6 @@
 package driver;
 
+import common.Utils;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -23,7 +24,7 @@ public class DriverManager {
         File userDir = new File(System.getProperty("user.dir"));
         File appDir = new File(userDir, "app");
         return switch (device) {
-            case ANDROID -> new File(appDir, "theScore_ Sports News & Scores_24.4.0_Apkpure.apk").getAbsolutePath();
+            case ANDROID -> new File(appDir, Utils.getProperty("APP_NAME")).getAbsolutePath();
             case IOS -> "";
         };
     }
