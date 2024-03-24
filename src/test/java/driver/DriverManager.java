@@ -35,8 +35,10 @@ public class DriverManager {
         desiredCapabilities.setCapability("appium:deviceName", "Pixel 7 API 34");
         desiredCapabilities.setCapability("appium:app", getAppPath(Device.ANDROID));
         desiredCapabilities.setCapability("appium:automationName", "UiAutomator2");
+        desiredCapabilities.setCapability("appium:appPackage", "com.fivemobile.thescore");
+        desiredCapabilities.setCapability("appium:appActivity", ".ui.MainActivity");
         desiredCapabilities.setCapability("appium:newCommandTimeout", 3600);
-        desiredCapabilities.setCapability("appium:autoGrantPermissions", "true");
+        desiredCapabilities.setCapability("appium:autoGrantPermissions", true);
         
         return getDriverHelper(desiredCapabilities);
     }

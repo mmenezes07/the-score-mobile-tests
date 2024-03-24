@@ -37,11 +37,6 @@ public class BasePage {
         return text;
     }
 
-    public String getText(By by, String expectedText) {
-        waitForText(by, expectedText);
-        return getText(by);
-    }
-
     public boolean isElementSelected(By by) {
         waitForElementToBePresent(by);
         boolean selected = driver.findElement(by).isSelected();
@@ -50,7 +45,12 @@ public class BasePage {
     }
 
     public boolean isElementDisplayed(By by) {
-        waitForElementToBePresent(by);
+        try {
+            waitForElementToBePresent(by);
+        } catch (Exception e) {
+            return false;
+        }
+        
         boolean displayed = driver.findElement(by).isDisplayed();
         System.out.println(STR."Element\{by.toString()} has property displayed set to \{displayed}");
         return displayed;
@@ -58,19 +58,19 @@ public class BasePage {
 
     public void waitForElementToBeClickable(By by) {
         System.out.println(STR."Waiting for element\{by.toString()} to be clickable");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(by));
     }
 
     public void waitForElementToBePresent(By by) {
         System.out.println(STR."Waiting for element\{by.toString()} to be present");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
     public void waitForElementToBeVisible(By by) {
         System.out.println(STR."Waiting for element\{by.toString()} to be visible");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 

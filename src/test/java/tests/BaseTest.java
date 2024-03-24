@@ -14,13 +14,13 @@ public class BaseTest {
     AppiumDriver driver;
 
     @BeforeClass
-    public void SetUp() throws MalformedURLException {
+    public void setUp() throws MalformedURLException {
         driver = new DriverManager().getDriver(Device.ANDROID);
         UserActions.NavigateToHomePage(driver);
     }
 
     @AfterClass
-    public void TearDown() {
+    public void tearDown() {
         if (driver != null) {
             driver.quit();
         }

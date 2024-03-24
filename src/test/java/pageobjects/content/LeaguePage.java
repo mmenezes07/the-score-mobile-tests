@@ -13,8 +13,8 @@ public class LeaguePage extends BasePage {
         super(driver);
     }
     
-    public String getTitle(String expectedText) {
-        return getText(title, expectedText);
+    public String getTitle() {
+        return getText(title);
     }
     
     public void clickStandingsTab() {

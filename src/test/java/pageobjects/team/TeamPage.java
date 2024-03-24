@@ -13,8 +13,8 @@ public class TeamPage extends BasePage {
         super(driver);
     }
     
-    public String getTeamName(String expectedText) {
-        return getText(teamName, expectedText);
+    public String getTeamName() {
+        return getText(teamName);
     }
     
     public TeamStatsPage clickTeamStatsTab() {

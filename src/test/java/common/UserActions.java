@@ -9,6 +9,10 @@ import pageobjects.WelcomePage;
 public class UserActions {
     public static void NavigateToHomePage(AppiumDriver driver) {
         WelcomePage welcomePage = new WelcomePage(driver);
+        if (!welcomePage.isAt()) {
+            return;
+        }
+        
         welcomePage.clickGetStarted();
 
         ChooseFavoritesPage chooseFavoritesPage = new ChooseFavoritesPage(driver);

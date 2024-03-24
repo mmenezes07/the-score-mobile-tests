@@ -13,4 +13,8 @@ public class WelcomePage extends BasePage {
     public void clickGetStarted() {
         click(getStartedButton);
     }
+    
+    public boolean isAt() {
+        return isElementDisplayed(getStartedButton);
+    }
 }

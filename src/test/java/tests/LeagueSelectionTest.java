@@ -2,30 +2,29 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pageobjects.content.FavoritesPage;
+import pageobjects.content.ContentBasePage;
 import pageobjects.content.LeaguePage;
 import pageobjects.content.LeagueSelectionPage;
 
 public class LeagueSelectionTest extends BaseTest {
     @Test
     public void selectLeagueTest() {
-        FavoritesPage favoritesPage = new FavoritesPage(driver);
-        Assert.assertTrue(favoritesPage.isAt()); 
+        ContentBasePage contentPage = new ContentBasePage(driver);        
+        contentPage.clickLeaguesTab();
         
-        favoritesPage.clickLeaguesTab();
         LeagueSelectionPage leagueSelectionPage = new LeagueSelectionPage(driver);
         Assert.assertTrue(leagueSelectionPage.isAt());
-        
+
         // workaround to dismiss the quick tip modal
         leagueSelectionPage.clickEdit();
         leagueSelectionPage.clickDone();
-        
+
         String leagueName = "NHL";
         leagueSelectionPage.clickLeague(leagueName);
 
         LeaguePage leaguePage = new LeaguePage(driver);
-        Assert.assertEquals(leaguePage.getTitle(leagueName), leagueName);
-        
+        Assert.assertEquals(leaguePage.getTitle(), leagueName);
+
         leaguePage.clickStandingsTab();
         Assert.assertTrue(leaguePage.isTeamPresent("BOS Bruins"));
         /*
@@ -37,7 +36,7 @@ public class LeagueSelectionTest extends BaseTest {
         Alternatively, if we had access to the API used by this page, we could get the API data and assert that 
         the teams that are supposed to be in the playoffs get displayed on this screen and in the right spot.
          */
-        
+
         leaguePage.clickBack();
         Assert.assertTrue(leagueSelectionPage.isAt());
     }
