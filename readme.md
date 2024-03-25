@@ -17,7 +17,7 @@ stack and setup/run guide.
 2. [Setup](#setup)
 3. [Running Tests](#running-tests)
    1. [Running All Tests](#running-all-tests)
-   2. [Running Single Test](#running-tests-from-test-class)
+   2. [Running Single Test](#running-tests-by-class)
 4. [Project Structure](#project-structure)
    1. [app](#app)
    2. [Page Objects](#srctestjavapageobjects)
@@ -26,7 +26,7 @@ stack and setup/run guide.
 6. [Test Specification](#test-specification)
    1. [Test Data](#test-data)
 7. [Rationale & Coverage Assessment](#rationale--coverage-assessment)
-   1. [Design Patter](#design-pattern)
+   1. [Design Pattern](#design-pattern)
    2. [BaseTest](#basetest)
 
 ## Prerequisites
@@ -126,7 +126,7 @@ the stats are changing every day and so the assertion could fail.
 
 Ideally, we would have a staging or test environment where we could specify the test
 data for a league/team including the team names, standings, stats and so on.
-We could then use that test data to assert the playoff picture/stadings/stats
+We could then use that test data to assert the playoff picture/standings/stats
 accurately since we know the right standings. Alternatively, if we had access to
 the API used by this page, we could get the API data and assert the data accurately
 that way.
