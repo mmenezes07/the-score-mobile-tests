@@ -6,7 +6,7 @@ import pageobjects.BasePage;
 
 /**
  * Contains common content in the main page of the app
- * Includes tab navigation and user account button
+ * Includes tab navigation and search bar
  */
 public class ContentBasePage extends BasePage {
     private final By searchBar = By.id("search_bar_text_view");
