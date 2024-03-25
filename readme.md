@@ -16,6 +16,7 @@ stack and setup/run guide.
 3. [Running Tests](#running-tests)
 4. [Project Structure](#project-structure)
 5. [Reporting](#reporting)
+6. [Rationale](#rationale)
 
 ## Prerequisites
 
@@ -69,14 +70,6 @@ then be created in a test and these actions would then be called.
 All page objects inherit from a `BasePage` which contains the base application 
 interactions such as `click`, `getText` and so on.
 
-The benefit of using the Page Object Model
-design pattern is that is separates the application logic from the test 
-implementation. This promotes maintainability, reusability, and scalability when writing tests.
-If there are any changes to the locator on the application end, it is easy to 
-update the locator in a page object. The change would only need to be made in 
-a single place without the need to update any tests. Additionally, tests are 
-easier to read and are much better organized.
-
 #### src/test/java/tests
 
 The tests for mobile application are stored here. The tests use the TestNG testing framework.
@@ -94,3 +87,47 @@ run the following commands:
 allure generate --clean
 allure open
 ```
+## Rationale
+
+#### Design Pattern
+
+The automation framework uses the Page Object Model design pattern.
+The benefit of using this
+design pattern is that is separates the application logic from the test
+implementation. This promotes maintainability, reusability, and scalability when writing tests.
+If there are any changes to the locator on the application end, it is easy to
+update the locator in a page object. The change would only need to be made in
+a single place without the need to update any tests. Additionally, tests are
+easier to read and are much better organized.
+
+#### BaseTest
+
+The base test houses the setup and tearDown methods which are run before/after each 
+class. The idea is to reset the app to a clean state before running the next test.
+If a test fails for any reason, this reset will ensure that the next test does not
+start from that failed state and potentially fail as a result.
+
+The appium desired capability `no reset` is set to true to retain app user data.
+This enables the app to open directly on the home page rather than having to 
+navigate through the welcome screen as a user would if they were opening the app for the
+first time. There is code in place to check if this welcome page is displayed and 
+the code handles the navigation through these pages if necessary.
+
+#### Test Data
+
+Both the `LeagueSelectionTest` and `TeamSelectionTest` are parameterized and can be used
+to test most leagues/teams. There is an assertion included that tests the names of the
+teams in the playoff picture and another one checking the team stats. This check 
+ensures that the right league and right team's stats are displayed.
+
+However, some of the test data may cause the tests to fail
+and these assertions are commented out for now. For the league test, the teams in 
+the playoff picture could change, causing the test to fail. For the team stats test, 
+the stats are changing every day and so the assertion could fail.
+
+Ideally, we would have a staging or test environment where we could specify the test 
+data for a league/team including the team names, standings, stats and so on.
+We could then use that test data to assert the playoff picture/stadings/stats 
+accurately since we know the right standings. Alternatively, if we had access to 
+the API used by this page, we could get the API data and assert the data accurately
+that way.
