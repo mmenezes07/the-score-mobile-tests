@@ -13,4 +13,9 @@ public class Stat {
         this.value = value;
         this.rank = rank;
     }
+    
+    @Override
+    public String toString() {
+        return STR."\{this.category}: \{this.value} \{this.rank}";
+    }
 }
