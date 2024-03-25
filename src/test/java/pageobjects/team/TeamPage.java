@@ -6,7 +6,7 @@ import pageobjects.BasePage;
 
 public class TeamPage extends BasePage {
     private final By teamName = By.id("team_name");
-    private final By teamStatsTab = By.xpath("//android.widget.LinearLayout[@content-desc=\"Team Stats\"]");
+    protected final By teamStatsTab = By.xpath("//android.widget.LinearLayout[@content-desc=\"Team Stats\"]");
     private final By goBackButton = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
     
     public TeamPage(AppiumDriver driver) {
@@ -20,10 +20,6 @@ public class TeamPage extends BasePage {
     public TeamStatsPage clickTeamStatsTab() {
         click(teamStatsTab);
         return new TeamStatsPage(driver);
-    }
-    
-    public boolean isTeamStatsTabSelected() {
-        return isElementSelected(teamStatsTab);
     }
     
     public void clickGoBack() {

@@ -1,5 +1,8 @@
 package common;
 
+/**
+ * A helper class to create Stat objects for the team stats page of the app
+ */
 public class Stat {
     public String category;
     public String value;

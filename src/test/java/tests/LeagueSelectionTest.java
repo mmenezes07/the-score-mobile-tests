@@ -4,8 +4,9 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pageobjects.content.ContentBasePage;
-import pageobjects.content.LeaguePage;
+import pageobjects.league.LeaguePage;
 import pageobjects.content.LeagueSelectionPage;
+import pageobjects.league.LeagueStandingsPage;
 
 public class LeagueSelectionTest extends BaseTest {
     
@@ -40,8 +41,8 @@ public class LeagueSelectionTest extends BaseTest {
         Assert.assertEquals(leaguePage.getTitle(), leagueName);
 
         // Click on the Standing sub tab of the league
-        leaguePage.clickStandingsTab();
-        Assert.assertTrue(leaguePage.areTeamsPresent(teamNames));
+        LeagueStandingsPage leagueStandingsPage = leaguePage.clickStandingsTab();
+        Assert.assertTrue(leagueStandingsPage.areTeamsPresent(teamNames));
         /*
         NOTE: The assertion above is not very strong/good. The teams in the playoff picture could change, causing
         the test to fail. More teams could also be asserted but the same problem exists.

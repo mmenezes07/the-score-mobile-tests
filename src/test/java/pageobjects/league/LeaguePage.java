@@ -1,4 +1,4 @@
-package pageobjects.content;
+package pageobjects.league;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
@@ -17,20 +17,9 @@ public class LeaguePage extends BasePage {
         return getText(title);
     }
     
-    public void clickStandingsTab() {
+    public LeagueStandingsPage clickStandingsTab() {
         click(standingsTab);
-    }
-    
-    public boolean isTeamPresent(String expectedTeam) {
-        return isElementDisplayed(By.xpath(STR."//android.widget.TextView[@text=\"\{expectedTeam}\"]"));
-    }
-    
-    public boolean areTeamsPresent(String[] expectedTeams) {
-        for (String expectedTeam : expectedTeams) {
-            if (!isTeamPresent(expectedTeam)) return false;
-        }
-        
-        return true;
+        return new LeagueStandingsPage(driver);
     }
     
     public void clickBack() {

@@ -10,11 +10,10 @@ import org.testng.annotations.BeforeClass;
 import java.net.MalformedURLException;
 
 public class BaseTest {
-
     AppiumDriver driver;
 
     @BeforeClass
-    public void setUp() throws MalformedURLException {
+    public void setUp(){
         driver = new DriverManager().getDriver(Device.ANDROID);
         UserActions.NavigateToHomePage(driver);
     }
@@ -24,6 +23,5 @@ public class BaseTest {
         if (driver != null) {
             driver.quit();
         }
-
     }
 }

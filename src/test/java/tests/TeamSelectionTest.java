@@ -6,7 +6,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pageobjects.SearchResultsPage;
 import pageobjects.content.ContentBasePage;
-import pageobjects.content.FavoritesPage;
 import pageobjects.team.TeamPage;
 import pageobjects.team.TeamStatsPage;
 
@@ -43,7 +42,7 @@ public class TeamSelectionTest extends BaseTest {
 
         // Click on the team stats sub tab and assert that it opened
         TeamStatsPage teamStatsPage = teamPage.clickTeamStatsTab();
-        Assert.assertTrue(teamStatsPage.isTeamStatsTabSelected());
+        Assert.assertTrue(teamStatsPage.isAt());
         
         // Assert that the list of stats provided match
         Assert.assertTrue(teamStatsPage.areStatsDisplayed(stats));

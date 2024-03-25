@@ -3,6 +3,9 @@ package pageobjects.content;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 
+/**
+ * Leagues tab page
+ */
 public class LeagueSelectionPage extends ContentBasePage {
     private final By editButton = By.xpath("//android.widget.TextView[@text=\"Edit\"]");
     private final By doneButton = By.xpath("//android.widget.TextView[@text=\"Done\"]");
