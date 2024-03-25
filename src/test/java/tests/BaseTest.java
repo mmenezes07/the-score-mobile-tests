@@ -7,8 +7,6 @@ import io.appium.java_client.AppiumDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-import java.net.MalformedURLException;
-
 public class BaseTest {
     AppiumDriver driver;
 

@@ -57,6 +57,9 @@ public class DriverManager {
         desiredCapabilities.setCapability("appium:appActivity", Utils.getProperty("APP_ACTIVITY"));
         desiredCapabilities.setCapability("appium:newCommandTimeout", 3600);
         desiredCapabilities.setCapability("appium:autoGrantPermissions", true);
+        desiredCapabilities.setCapability("appium:forceAppLaunch", true);
+        desiredCapabilities.setCapability("appium:shouldTerminateApp", true);
+        desiredCapabilities.setCapability("noReset", true);
         
         return getDriverHelper(desiredCapabilities);
     }

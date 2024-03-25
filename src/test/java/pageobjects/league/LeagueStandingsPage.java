@@ -12,6 +12,10 @@ public class LeagueStandingsPage extends LeaguePage {
         super(driver);
     }
     
+    public boolean isAt() {
+        return isElementSelected(standingsTab);
+    }
+    
     public boolean isTeamPresent(String expectedTeam) {
         return isElementDisplayed(By.xpath(STR."//android.widget.TextView[@text=\"\{expectedTeam}\"]"));
     }

@@ -6,7 +6,7 @@ import pageobjects.BasePage;
 
 public class LeaguePage extends BasePage {
     private final By title = By.id("titleTextView");
-    private final By standingsTab = By.xpath("//android.widget.TextView[@text=\"STANDINGS\"]");
+    protected final By standingsTab = By.xpath("//android.widget.TextView[@text=\"STANDINGS\"]");
     private final By backButton = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
     
     public LeaguePage(AppiumDriver driver) {
